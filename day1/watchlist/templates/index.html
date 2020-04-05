@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>总共{{ movies|length }}个电影</p>
+<!-- 添加电影的表单 -->
+<form action="" method="POST">
+    电影名称 <input type="text" name="title" required autocomplete="off">
+    电影年份 <input type="text" name="year" required autocomplete="off">
+    <input class="btn" type="submit" value="添加">
+</form>
+<ul class="movie-list">
+    {% for movie in movies%}
+    <li>
+        {{ movie.title }} - {{ movie.year }}
+        <span class="float-right">
+            <a class="baidu" href="http://v.baidu.com/v?word={{ movie.title }}&ct=301989888&rn=67&pn=0&db=0&s=0&fbl=800&ie=utf-8&oq={{ movie.title }}&f=3&rsp=0" target="_blank">百度视频</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
