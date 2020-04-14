@@ -1,0 +1,32 @@
+
+VueMathPlugin.js
+export default{
+    install:function(Vue){
+        // 自定义指令 square  v-square
+        Vue.directive(‘square’, function (el, binding) {
+            el.innerHTML = Math.pow(binding.value,2);
+        });
+        //开方
+        Vue.directive(‘sqrt’,function(el,binding){
+            el.innerHTML = Math.sqrt(binding.value)
+        });
+        //sin
+        Vue.directive(“sin”,function(el,binding){
+            el.innerHTML = Math.sin(binding.value)
+        });
+        //cos
+        Vue.directive(“cos”,function(el,binding){
+            el.innerHTML = Math.cos(binding.value)
+        });
+        //tan
+        Vue.directive(“tan”,function(el,binding){
+            el.innerHTML = Math.tan(binding.value)
+        });
+    }
+}
+index.html
+开方:{{ item }}
+sin值:{{ item }}
+cos值{{ item }}
+tan值{{ item }}
+//注:先删除main.js文件,在项目目录下的命令行运行npm run build重新生成main.js文件
