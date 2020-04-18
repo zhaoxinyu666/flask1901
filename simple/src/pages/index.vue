@@ -31,42 +31,13 @@
       <div class="index-board-list">
         
       
-      <div class="index-board-item">
+      <div class="index-board-item" v-for="item in boardList">
           <div class="index-board-item-inner">
-            <h2>戴尔电脑</h2>
-            <p>戴尔电脑就是好哇</p >
-            <div class="index-board-button">立即购买</div>
+            <h2>{{item.title}}</h2>
+            <p>{{item.desription}}</p >
+            <div  class="index-board-button">立即购买</div>
           </div>
         </div>
-      <div><div class="index-board-item">
-          <div class="index-board-item-inner">
-            <h2>戴尔电脑</h2>
-            <p>戴尔电脑就是好哇</p >
-            <div class="index-board-button">立即购买</div>
-          </div>
-        </div>
-</div>
-      
-      <div>
-        <div class="index-board-item">
-          <div class="index-board-item-inner">
-            <h2>戴尔电脑</h2>
-            <p>戴尔电脑就是好哇</p >
-            <div class="index-board-button">立即购买</div>
-          </div>
-        </div>
-      </div>
-
-  <div>
-    <div class="index-board-item">
-          <div class="index-board-item-inner">
-            <h2>戴尔电脑</h2>
-            <p>戴尔电脑就是好哇</p >
-            <div class="index-board-button">立即购买</div>
-          </div>
-        </div>
-  </div>
-
       </div>
     </div>
   </div>
@@ -77,100 +48,39 @@ import axios from 'axios'
 export default {
   mounted(){
     axios.get('api/getNewsList')
-    .then((res)=>{
-      console.log(res),
-      this.newsList =res.data.list
+    .then((response)=>{
+      console.log(response),
+      this.newsList =response.data.list
     })
     .catch((error)=>{
       console.log(error)
     })
 
-    axios.get('api/getProductsList')
-    .then((res)=>{
-      console.log(res),
-      this.newsList =res.data.list
+    axios.get('api/getProductList')
+    .then((response)=>{
+      console.log(response),
+      this.productList =response.data
     })
     .catch((error)=>{
       console.log(error)
     })
 
-    axios.get('api/getBoardList')
-    .then((res)=>{
-      console.log(res),
-      this.newsList =res.data.list
+     axios.get('api/getBoardList')
+    .then((response)=>{
+      console.log(response),
+      this.boardList =response.data
     })
     .catch((error)=>{
       console.log(error)
     })
+
+  
   },
   data() {
     return {
-      newsList: [
-            {
-              title: "数据统计",
-              url: "http://starcraft.com"
-            },
-            {
-              title: "数据预测",
-              url: "http://warcraft.com"
-            },
-            {
-              title: "流量分析",
-              url: "http://overwatch.com"
-            },
-            {
-              title: "广告发布",
-              url: "http://hearstone.com"
-            }
-          ],
-      productList: {
-        pc: {
-          title: "PC产品",
-          list: [
-            {
-              title: "数据统计",
-              url: "http://starcraft.com"
-            },
-            {
-              title: "数据预测",
-              url: "http://warcraft.com"
-            },
-            {
-              title: "流量分析",
-              url: "http://overwatch.com",
-              hot: true
-            },
-            {
-              title: "广告发布",
-              url: "http://hearstone.com"
-            }
-          ]
-        },
-        app: {
-          title: "手机应用类",
-          last:true,
-          list: [
-            {
-              title: "91助手",
-              url: "http://weixin.com"
-            },
-            {
-              title: "产品助手",
-              url: "http://weixin.com",
-              hot: true
-            },
-            {
-              title: "智能地图",
-              url: "http://maps.com"
-            },
-            {
-              title: "语音助手",
-              url: "http://phone.com",
-              hot: true
-            }
-          ]
-        }
-      }
+      newsList: [],
+      productList: null,
+      boardList:null
     };
   }
 };
